@@ -126,6 +126,9 @@ double oldXPos = xPos;
             yPos += distance * Math.Sin(radianAngle);
 
 //a kod egy pontot mozgat egy adott szogben illetve tavolsagba , a szoget fokbol radianba alakitja majd a cos és sinnel kiszamolja mennyit kell menni X,Y iranyba.
+//Radian az azer kell mer hogy a .Sin es a .Cos ebben varja el a szoget nem fokba
+//1 radian az a szog ami a koriv hossza megegyezik a kor sugaraval
+//360 fok = 1(pi) radian
 ```
 
 9. Hogy a teknos vonalat is huzzon maga utan es az latszodjon is ezert egy Line-t deklaralunk a regi es a jelenlegi x koordinatakkal illetve beallitva hogy fekete legyen maga a line.
