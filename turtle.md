@@ -43,7 +43,7 @@ private double xPos = 400;
         private double yPos = 200;  
         private double angle = 0;   
 
-        private Ellipse turtle; 
+        private Ellipse turtle;
 ```
 
 4. Ezek betoltese utan a Canvashoz hozzaadjuk illetve el is helyezzuk a teknost
@@ -124,6 +124,8 @@ double oldXPos = xPos;
             double radianAngle = angle * Math.PI / 180;
             xPos += distance * Math.Cos(radianAngle);
             yPos += distance * Math.Sin(radianAngle);
+
+//a kod egy pontot mozgat egy adott szogben illetve tavolsagba , a szoget fokbol radianba alakitja majd a cos és sinnel kiszamolja mennyit kell menni X,Y iranyba.
 ```
 
 9. Hogy a teknos vonalat is huzzon maga utan es az latszodjon is ezert egy Line-t deklaralunk a regi es a jelenlegi x koordinatakkal illetve beallitva hogy fekete legyen maga a line.
