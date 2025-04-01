@@ -4,9 +4,6 @@
 
     Egy egyszerusitett Imagine Logo wpfben megirva , tud forogni illetve menni erre arra
 
-# A PROGRAM ISMERT HIBAJA
-
-    Valami oknal fogva megjelenik egy masodik "teknoc" is a bal felso sarokba de egy cleareles utan eltunik
 
 # FONTOS TUDNIVALOK
 
@@ -29,7 +26,6 @@
         Title="Application" Height="450" Width="800">
     <Grid>
         <Canvas Name="LogoCanvas" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Ellipse Name="Turtle" Width="20" Height="20" Fill="Black" />
         </Canvas>
         <TextBox Name="CommandTextBox" VerticalAlignment="Bottom" Height="30" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown" />
     </Grid>
@@ -41,7 +37,7 @@
 ```c#
 private double xPos = 400;  
         private double yPos = 200;  
-        private double angle = 0;   
+        private double angle = -90;   
 
         private Ellipse turtle;
 ```
@@ -49,6 +45,12 @@ private double xPos = 400;
 4. Ezek betoltese utan a Canvashoz hozzaadjuk illetve el is helyezzuk a teknost
 
 ```c#
+ turtle = new Ellipse
+ {
+     Width = 20,
+     Height = 20,
+     Fill = Brushes.Black
+ };
  LogoCanvas.Children.Add(turtle);
 
             
@@ -60,14 +62,14 @@ private double xPos = 400;
 
 ```c#
 private void CommandTextBox_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                string command = CommandTextBox.Text.Trim();
-                ExecuteCommand(command);
-                CommandTextBox.Clear();
-            }
-        }
+{
+    if (e.Key == Key.Enter)
+    {
+        string command = CommandTextBox.Text.Trim();
+        CommandExecute(command);
+        CommandTextBox.Clear();
+    }
+}
 ```
 
 6. Mivel a parancsunkat szet vagtuk ezert ez tobb reszre fog esni tetelezzuk fel hogy a userunk nem degeneralt ezert nem ugy irja le hogy "f o r w a r d" (nem is engedi) ezert egy string tombbe felvesszuk a commandod szokoz alapjan splitelve es hozzaadjuk egy stringhez ami ennek az elso reszet fogja atvenni ami jo esetbe a megadott dolgok kozott van (forward)
@@ -80,37 +82,30 @@ string action = parts[0].ToLower();
 7. az ExecuteCommand metodus nem mas mint egy elegge nagy morzsanyi switch ami a casehez megfeleloen irkalja a koordinatat es kuldi tovabb a MoveTurtle fuggvenynek. Mivel van egy part valtozonk es annak a masodik (jelenesetben 1. indexu eleme ) eleme az a szam amivel kell mozgatni a teknocunket az if agakban azt csekkoljuk hogy int-e alakithato e. Az alapertelmezett esettel pedig biztositjuk hogy veletlenul se egy elme zakkant probalja hasznalni a programot es ha nincs benne a casek kozott akkor hibat dob.
 
 ```c#
-switch (action)
-                case "forward":
-                    if (parts.Length > 1 && double.TryParse(parts[1], out double forwardDistance))
-                    {
-                        MoveTurtle(forwardDistance);
-                    }
-                    break;
-                case "backward":
-                    if (parts.Length > 1 && double.TryParse(parts[1], out double backwardDistance))
-                    {
-                        MoveTurtle(-backwardDistance);
-                    }
-                    break;
-                case "left":
-                    if (parts.Length > 1 && double.TryParse(parts[1], out double leftAngle))
-                    {
-                        TurnTurtle(-leftAngle);
-                    }
-                    break;
-                case "right":
-                    if (parts.Length > 1 && double.TryParse(parts[1], out double rightAngle))
-                    {
-                        TurnTurtle(rightAngle);
-                    }
-                    break;
-                case "clear":
-                    ClearCanvas();
-                    break;
-                default:
-                    MessageBox.Show("Ismeretlen parancs!");
-                    break;
+ if (command == "töröl")
+ {
+     //ClearCanvas();
+ }
+
+
+ switch (action)
+ {
+     case "előre":
+         MoveTurtle(volume);
+         break;
+     case "hátra":
+         MoveTurtle(-volume);
+         break;
+     case "balra":
+         //TurnTurtle(-volume)
+         break;
+     case "jobbra":
+         //TurnTurtle(volume);
+         break;
+     default:
+         MessageBox.Show("Ismeretlen parancs!");
+         break;
+ }
 ```
 
 8. A teknoc mozgatasara a MoveTurtle metodus van hasznalatba aminek atadunk egy double tipusu valtozot ami a tavolsagot tarolja el , eltaroljuk a ketto regi poziciot majd a fokot is kiszamoljuk.
