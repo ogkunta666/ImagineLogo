@@ -1,0 +1,136 @@
+using System.Text;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+
+namespace Wpf_1_Imagine
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : Window
+    {
+        private double _xPos = 0;
+        private double _yPos = 0;
+        private double _angle = 0;
+
+        private Ellipse turtle;
+
+        public MainWindow()
+        {
+            InitializeComponent();
+            MessageBox.Show("A program az alabbi parancsokat fogadja el : \nelőre <lepesek száma>\nhátra <lepesek száma>\njobbra <fok>\nbalra <fok>\n töröl ");
+
+            turtle = new Ellipse
+            {
+                Width = 20,
+                Height = 20,
+                Fill = Brushes.Black
+            };
+            LogoCanvas.Children.Add(turtle);
+
+            CanvasInit();
+        }
+
+        private void CommandTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter) 
+            {
+                string command = CommandTextBox.Text.Trim();
+                CommandExecute(command);
+                CommandTextBox.Clear();
+            }
+        }
+
+        private void CommandExecute(string command)
+        {
+            if (command == "töröl")
+            {
+                ClearCanvas();
+            }
+
+            string[] parts = command.Split(' ');
+            if (parts.Length != 2)
+            {
+                return;
+            }
+            string action = parts[0].ToLower();
+            if (!(double.TryParse(parts[1], out double volume)))
+            {
+                return;
+            }
+
+            switch (action)
+            {
+                case "előre":
+                    MoveTurtle(volume);
+                    break;
+                case "hátra":
+                    MoveTurtle(-volume);
+                    break;
+                case "balra":
+                    TurnTurtle(-volume);
+                    break;
+                case "jobbra":
+                    TurnTurtle(volume);
+                    break;
+                default:
+                    MessageBox.Show("Ismeretlen parancs!");
+                    break;
+            }
+        }
+
+        private void MoveTurtle(double distance)
+        {
+            double oldXPos = _xPos;
+            double oldYPos = _yPos;
+
+            double radianAngle = _angle * Math.PI / 180;
+            _xPos += distance * Math.Cos(radianAngle);
+            _yPos += distance * Math.Sin(radianAngle);
+
+            Line line = new Line
+            { 
+                X1 = oldXPos,
+                Y1 = oldYPos,
+                X2 = _xPos,
+                Y2 = _yPos,
+                Stroke = Brushes.Black,
+                StrokeThickness = 2
+            };
+            
+            LogoCanvas.Children.Add(line);
+
+            Canvas.SetLeft(turtle, _xPos-10);
+            Canvas.SetTop(turtle, _yPos-10);
+
+        }
+
+        private void TurnTurtle(double volume)
+        {
+            _angle += volume;
+        }
+
+        private void ClearCanvas()
+        {
+            LogoCanvas.Children.Clear();
+            LogoCanvas.Children.Add(turtle);
+            CanvasInit();
+        }
+
+        private void CanvasInit()
+        {
+            _xPos = 400;
+            _yPos = 200;
+            _angle = -90;
+            Canvas.SetLeft(turtle, _xPos - 10);
+            Canvas.SetTop(turtle, _yPos - 10);
+        }
+    }
+}
