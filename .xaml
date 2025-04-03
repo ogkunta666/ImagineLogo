@@ -1,0 +1,14 @@
+<Window x:Class="Wpf_1_Imagine.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wpf_1_Imagine"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Canvas x:Name="LogoCanvas" Background="White" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+        </Canvas>
+        <TextBox x:Name="CommandTextBox" VerticalAlignment="Bottom" Height="30" Margin="10,0,10,10" KeyDown="CommandTextBox_KeyDown" />
+    </Grid>
+</Window>
