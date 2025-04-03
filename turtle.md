@@ -2,17 +2,17 @@
 
 # Feladat leirasa :
 
-    Egy egyszerusitett Imagine Logo wpfben megirva , tud forogni illetve menni erre arra
+    Egy egyszerusitett Imagine Logo wpfben megirva , tudja az alap dolgokat perpilanat még tollatfel és tollatle nélkül
 
 
 # FONTOS TUDNIVALOK
 
-    A program angol nyelvu utasitasokat fogad el a jelenlegi allapotaban amik az alabbiak:
-    - forward <szám>
-    - backward <szám>
-    - left <szám>
-    - right <szám>
-    - clear
+    A program által elfogadott utasítások:
+    - előre <szám>
+    - hátra <szám>
+    - balra <szám>
+    - jobbra <szám>
+    - töröl
 
 # Tudnivalok a gridrol
 
