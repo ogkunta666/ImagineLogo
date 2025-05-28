@@ -169,3 +169,16 @@ private void TurnTurtle(double turnAngle)
         }
 ```
 
+13. A Clearen belül látható init pedig a Canvas betöltésére funckionál.
+
+```c#
+ private void CanvasInit()
+        {
+            _xPos = 400;
+            _yPos = 200;
+            _angle = -90;
+            Canvas.SetLeft(turtle, _xPos - 10);
+            Canvas.SetTop(turtle, _yPos - 10);
+        }
+```
+
