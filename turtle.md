@@ -97,10 +97,10 @@ string action = parts[0].ToLower();
          MoveTurtle(-volume);
          break;
      case "balra":
-         //TurnTurtle(-volume)
+         TurnTurtle(-volume)
          break;
      case "jobbra":
-         //TurnTurtle(volume);
+         TurnTurtle(volume);
          break;
      default:
          MessageBox.Show("Ismeretlen parancs!");
