@@ -161,15 +161,11 @@ private void TurnTurtle(double turnAngle)
 12. A Clear pedig minden poziciot vissza allit alapertekbe es a vonalat is torli.
 
 ```c#
-private void ClearCanvas()
+ private void ClearCanvas()
         {
             LogoCanvas.Children.Clear();
-            LogoCanvas.Children.Add(turtle); 
-            xPos = 400;
-            yPos = 200;
-            angle = 0;
-            Canvas.SetLeft(turtle, xPos);
-            Canvas.Set
+            LogoCanvas.Children.Add(turtle);
+            CanvasInit();
         }
 ```
 
