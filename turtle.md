@@ -2,7 +2,7 @@
 
 # Feladat leirasa :
 
-    Egy egyszerusitett Imagine Logo wpfben megirva , tudja az alap dolgokat perpilanat még tollatfel és tollatle nélkül
+    Egy egyszerűsített Imagine Logo wpfben megirva , tudja az alap dolgokat perpilanat még tollatfel és tollatle nélkül
 
 
 # FONTOS TUDNIVALOK
