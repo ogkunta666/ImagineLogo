@@ -1,6 +1,6 @@
 # Imagine Logo from Temu
 
-# Feladat leirasa :
+# Feladat leírása :
 
     Egy egyszerűsített Imagine Logo wpfben megirva , tudja az alap dolgokat perpilanat még tollatfel és tollatle nélkül
 
@@ -14,10 +14,10 @@
     - jobbra <szám>
     - töröl
 
-# Tudnivalok a gridrol
+# Tudnivalók a gridről
 
-1. Nagyon egyszeru grid mindossze egy canvas es egy textbox van benne , a textbox csak az utasitasok fogadasara alkalmas ha nem az elore megadott utasitasokat hasznaljuk akkor hibat dob
-2. A CommandTextBox_KeyDown enter megnyomasa eseten bekuldi a programnak az adott utasitast.
+1. Nagyon egyszerű grid mindössze egy canvas és egy textbox van benne , a textbox csak az utasítások fogadására alkalmas ha nem az előre megadott utasításokat használjuk akkor hibát dob
+2. A CommandTextBox_KeyDown enter megnyomása esetán beküldi a programnak az adott utasítást.
 
 ```c#
 <Window x:Class="ImagineLogoClone.MainWindow"
@@ -32,7 +32,7 @@
 </Window>
 ```
 
-3. A program indulasakor deklaraljuk az alapertelmezett valtozokat meg magat a "teknost" . A kezdeti poziciokat xPos es yPoskent vesszuk fel illetve a teknoc szoget egy angleben.
+3. A program indulásakor deklaráljuk az alapértelmezett változókat meg magát a "teknőst" . A kezdeti pozíciókat xPos és yPoskent vesszük fel illetve a teknőc szögét egy angleben.
 
 ```c#
 private double xPos = 400;  
@@ -42,7 +42,7 @@ private double xPos = 400;
         private Ellipse turtle;
 ```
 
-4. Ezek betoltese utan a Canvashoz hozzaadjuk illetve el is helyezzuk a teknost
+4. Ezek betöltése után a Canvashoz hozzáadjuk illetve el is helyezzük a teknőst
 
 ```c#
  turtle = new Ellipse
@@ -58,7 +58,7 @@ private double xPos = 400;
             Canvas.SetTop(turtle, yPos);
 ```
 
-5. Ha valamilyen parancsot kuldunk be az enterrel akkor a textbox tartalmat trimmel szetszedjuk , lefuttassuk a hozza valo parancsot es toroljuk a textbox tartalmat.
+5. Ha valamilyen parancsot küldünk be az enterrel akkor a textbox tartalmát trimmel szétszedjük , lefuttassuk a hozzá való parancsot es töröljük a textbox tartalmát.
 
 ```c#
 private void CommandTextBox_KeyDown(object sender, KeyEventArgs e)
@@ -72,14 +72,14 @@ private void CommandTextBox_KeyDown(object sender, KeyEventArgs e)
 }
 ```
 
-6. Mivel a parancsunkat szet vagtuk ezert ez tobb reszre fog esni tetelezzuk fel hogy a userunk nem degeneralt ezert nem ugy irja le hogy "f o r w a r d" (nem is engedi) ezert egy string tombbe felvesszuk a commandod szokoz alapjan splitelve es hozzaadjuk egy stringhez ami ennek az elso reszet fogja atvenni ami jo esetbe a megadott dolgok kozott van (forward)
+6. Mivel a parancsunkat szét vágtuk ezért ez több részre fog esni tételezzük fel hogy a felhasználónk nem degenerált ezért nem úgy írja le hogy "e l ő r e" (nem is engedi) ezért egy string tömbbe felvesszük a commandot szóköz alapján splitelve és hozzáadjuk egy stringhez ami ennek az első részét fogja átvenni ami jó esetbe a megadott dolgok között van (előre)
 
 ```c#
 string[] parts = command.Split(' ');
 string action = parts[0].ToLower();
 ```
 
-7. az ExecuteCommand metodus nem mas mint egy elegge nagy morzsanyi switch ami a casehez megfeleloen irkalja a koordinatat es kuldi tovabb a MoveTurtle fuggvenynek. Mivel van egy part valtozonk es annak a masodik (jelenesetben 1. indexu eleme ) eleme az a szam amivel kell mozgatni a teknocunket az if agakban azt csekkoljuk hogy int-e alakithato e. Az alapertelmezett esettel pedig biztositjuk hogy veletlenul se egy elme zakkant probalja hasznalni a programot es ha nincs benne a casek kozott akkor hibat dob.
+7. az ExecuteCommand metódus nem más mint egy eléggé nagy morzsányi switch ami a casehez megfelelően irkálja a koordinátát és küldi tovább a MoveTurtle függvénynek. Mivel van egy part változónk és annak a második (jelenesetben 1. indexű eleme ) eleme az a szám amivel kell mozgatni a teknőcünket az if ágakban azt csekkoljuk hogy int-é alakítható-e. Az alapértelmezett esettel pedig biztosítjuk hogy véletlenül se egy elme zakkant próbálja használni a programot és ha nincs benne a casek között akkor hibát dob.
 
 ```c#
  if (command == "töröl")
@@ -108,8 +108,8 @@ string action = parts[0].ToLower();
  }
 ```
 
-8. A teknoc mozgatasara a MoveTurtle metodus van hasznalatba aminek atadunk egy double tipusu valtozot ami a tavolsagot tarolja el , eltaroljuk a ketto regi poziciot majd a fokot is kiszamoljuk.
-Ezt kovetoen bonyolult matematikai egyenletekkel kiszamoljuk az uj poziciokat.
+8. A teknőc mozgatására a MoveTurtle metódus van használatba aminek átadunk egy double tipusú változót ami a távolságot tárolja el. Eltároljuk a kettő régi pozíciót majd a fokot is kisáamoljuk.
+Ezt követően bonyolult matematikai egyenletekkel kisáamoljuk az új pozíciókat.
 
 ```c#
 double oldXPos = xPos;
@@ -126,7 +126,7 @@ double oldXPos = xPos;
 //360 fok = 1(pi) radian
 ```
 
-9. Hogy a teknos vonalat is huzzon maga utan es az latszodjon is ezert egy Line-t deklaralunk a regi es a jelenlegi x koordinatakkal illetve beallitva hogy fekete legyen maga a line.
+9. Hogy a teknos vonalat is húzzon maga után és az látszódjon is ezért egy Line-t deklarálunk a régi és a jelenlegi x koordinátákkal illetve beállítva hogy fekete legyen maga a line.
 
 ```c#
  Line line = new Line
@@ -140,7 +140,7 @@ double oldXPos = xPos;
             };
 ```
 
-10. A Canvashoz hozzaadjuk a linet a megfelelo poziciokhoz.
+10. A Canvashoz hozzáadjuk a linet a megfelelő pozíciókhoz.
 
 ```c#
 LogoCanvas.Children.Add(line);
@@ -149,7 +149,7 @@ Canvas.SetLeft(turtle, xPos);
 Canvas.SetTop(turtle, yPos);
 ```
 
-11. A teknos forgatasahoz egy TurnTurtle fuggveny van hasznalva amiben az anglehez hozza adjuk a megadott right / left erteket.
+11. A teknős forgatásához egy TurnTurtle függvény van használva amiben az anglehez hozzá adjuk a megadott right / left értéket.
 
 ```c#
 private void TurnTurtle(double turnAngle)
@@ -158,7 +158,7 @@ private void TurnTurtle(double turnAngle)
         }
 ```
 
-12. A Clear pedig minden poziciot vissza allit alapertekbe es a vonalat is torli.
+12. A Clear pedig minden pozíciót vissza állít alapértékbe és a vonalat is törli.
 
 ```c#
  private void ClearCanvas()
